@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Оценка рисков по отношению к раковым заболеваниям</title>
+    <style>
+         body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1e1e1e;
+            color: #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            background-color: #2a2a2a;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            text-align: left;
+            border: 1px solid #444;
+             width: 100%;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #f0f0f0;
+        }
+
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #333;
+            border: 1px solid #444;
+            width: 100%;
+        }
+
+        .question p {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #f0f0f0;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 16px;
+            color: #ccc;
+             width: 100%;
+        }
+
+        label:hover {
+            background-color: #444;
+            cursor: pointer;
+        }
+
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #444;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        .result {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #f0f0f0;
+        }
+
+        .error-message {
+            color: #dc3545;
+            margin-top: 10px;
+            text-align: center;
+        }
+
+          /* Подсветка невыбранных (бордовый оттенок) */
+.question.unanswered {
+    background-color: #d9534f; /* Мягкий бордовый */
+}
+
+/* Подсветка для выбранных (основной темный фон) */
+.question.answered {
+    background-color: #333; /* Темный фон */
+}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Оценка рисков по отношению к раковым заболеваниям</h1>
+        <form id="quizForm">
+            <!-- Вопросы -->
+            <div class="question" id="q1">
+                <p>1. Курите ли вы?</p>
+                <label><input type="radio" name="q1" value="3"> Да, курю</label>
+                <label><input type="radio" name="q1" value="0"> Нет, не курю</label>
+            </div>
+            <div class="question" id="q2">
+                <p>2. Как часто употребляете алкоголь?</p>
+                <label><input type="radio" name="q2" value="3"> Достаточно часто</label>
+                <label><input type="radio" name="q2" value="0"> Редко</label>
+                <label><input type="radio" name="q2" value="0"> Совсем не пью</label>
+            </div>
+            <div class="question" id="q3">
+                <p>3. Как часто вы проводите время на свежем воздухе?</p>
+                <label><input type="radio" name="q3" value="2"> Очень редко выхожу на улицу</label>
+                <label><input type="radio" name="q3" value="0"> Гуляю иногда, дышу воздухом</label>
+                <label><input type="radio" name="q3" value="0"> Практически каждый день</label>
+            </div>
+            <div class="question" id="q4">
+                <p>4. Занимаетесь ли вы спортом?</p>
+                <label><input type="radio" name="q4" value="2"> Нет, не занимаюсь</label>
+                <label><input type="radio" name="q4" value="0"> Да, регулярно</label>
+                <label><input type="radio" name="q4" value="1"> Иногда</label>
+            </div>
+            <div class="question" id="q5">
+                <p>5.
+
+
+Как часто вы употребляете фастфуд?</p>
+                <label><input type="radio" name="q5" value="2"> Часто питаюсь</label>
+                <label><input type="radio" name="q5" value="0"> Редко, пытаюсь питаться здоровой едой</label>
+                <label><input type="radio" name="q5" value="1"> Иногда могу поесть</label>
+            </div>
+            <div class="question" id="q6">
+                <p>6. Есть ли у вас проблемы с лишним весом?</p>
+                <label><input type="radio" name="q6" value="2"> Да, у меня есть лишний вес</label>
+                <label><input type="radio" name="q6" value="0"> Нет, я поддерживаю здоровый вес</label>
+                <label><input type="radio" name="q6" value="1"> Есть небольшой избыточный вес</label>
+            </div>
+            <div class="question" id="q7">
+                <p>7. Сидите ли вы на диетах?</p>
+                <label><input type="radio" name="q7" value="2"> Да, я регулярно придерживаюсь диет</label>
+                <label><input type="radio" name="q7" value="0"> Нет, я предпочитаю сбалансированное питание</label>
+            </div>
+            <div class="question" id="q8">
+                <p>8. Часто ли вы пользуетесь мобильными телефонами или компьютерами?</p>
+                <label><input type="radio" name="q8" value="2"> Постоянно</label>
+                <label><input type="radio" name="q8" value="0"> Нет, я люблю отдыхать от экранов</label>
+                <label><input type="radio" name="q8" value="1"> Несколько часов в день</label>
+            </div>
+            <div class="question" id="q9">
+                <p>9. Вы часто переживаете стресс?</p>
+                <label><input type="radio" name="q9" value="3"> Да, часто</label>
+                <label><input type="radio" name="q9" value="0"> Нет, я стараюсь избегать стрессовых ситуаций</label>
+            </div>
+            <div class="question" id="q10">
+
+<p>10. Как часто вы проходите медицинские обследования?</p>
+                <label><input type="radio" name="q10" value="2"> Только когда меня что-то беспокоит</label>
+                <label><input type="radio" name="q10" value="0"> Я регулярно проверяю свое здоровье</label>
+                <label><input type="radio" name="q10" value="3"> Вообще не прохожу</label>
+            </div>
+            <div class="question" id="q11">
+                <p>11. Есть ли у вас хронические заболевания?</p>
+                <label><input type="radio" name="q11" value="2"> Да, у меня есть некоторые проблемы со здоровьем</label>
+                <label><input type="radio" name="q11" value="0"> Нет, я здоров </label>
+            </div>
+            <div class="question" id="q12">
+                <p>12. Как вы относитесь к обработке пищи химическими веществами?</p>
+                <label><input type="radio" name="q12" value="1"> Это меня не беспокоит</label>
+                <label><input type="radio" name="q12" value="0"> Я предпочитаю органическую пищу</label>
+            </div>
+            <div class="question" id="q13">
+                <p>13. Сколько в день вы пьете воды?</p>
+                <label><input type="radio" name="q13" value="2"> Очень мало, мне хватает стакана</label>
+                <label><input type="radio" name="q13" value="0"> Я пью 1,5-2 литра воды каждый день</label>
+            </div>
+            <div class="question" id="q14">
+                <p>14. Вы пользовались соляриями?</p>
+                <label><input type="radio" name="q14" value="1"> Да, всегда хочу быть загорелым</label>
+                <label><input type="radio" name="q14" value="0"> Нет</label>
+            </div>
+            <div class="question" id="q15">
+                <p>15. Какое количество часов сна вы обычно получаете в сутки?</p>
+                <label><input type="radio" name="q15" value="2"> Менее 6 часов</label>
+                <label><input type="radio" name="q15" value="1"> 6-7 часов</label>
+                <label><input type="radio" name="q15" value="1"> Более 9 часов</label>
+                <label><input type="radio" name="q15" value="0"> 7-9 часов</label>
+            </div>
+
+
+<div class="question" id="q16">
+                <p>16. Используете ли вы химические средства для уборки дома?</p>
+                <label><input type="radio" name="q16" value="1"> Да, чем больше, тем лучше</label>
+                <label><input type="radio" name="q16" value="0"> Нет, я использую натуральные средства</label>
+                <label><input type="radio" name="q16" value="0"> Пользуюсь услугами клининговых сервисов</label>
+            </div>
+            <div class="question" id="q17">
+                <p>17. Когда вы в последний раз проверяли свою кожу на изменения?</p>
+                <label><input type="radio" name="q17" value="2"> Уже не помню (очень давно)</label>
+                <label><input type="radio" name="q17" value="0"> Я проверяю регулярно</label>
+            </div>
+            <div class="question" id="q18">
+                <p>18. Часто ли вы ощущаете усталость или недомогание?</p>
+                <label><input type="radio" name="q18" value="2"> Почти всегда, не могу с этим справиться</label>
+                <label><input type="radio" name="q18" value="0"> Я редко чувствую усталость или недомогание</label>
+            </div>
+            <div class="question" id="q19">
+                <p>19. Соблюдаете ли вы правила гигиены в повседневной жизни?</p>
+                <label><input type="radio" name="q19" value="0"> Да, слежу за чистотой</label>
+                <label><input type="radio" name="q19" value="2"> Иногда, но не всегда</label>
+            </div>
+            <div class="question" id="q20">
+                <p>20. Сколько лет вы живете в городских условиях?</p>
+                <label><input type="radio" name="q20" value="2"> Более 30 лет</label>
+
+<label><input type="radio" name="q20" value="1"> От 10-15</label>
+            </div>
+            <!-- ... остальные вопросы ... -->
+
+            <button type="submit">Проверить результат</button>
+        </form>
+        <div class="result"></div>
+        <div class="error-message"></div>
+    </div>
+
+    <script>
+        document.getElementById('quizForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var score = 0;
+            var questions = 20;
+            var unanswered = 0;
+            var resultText = '';
+
+            for (var i = 1; i <= questions; i++) {
+                var question = document.querySelector('#q' + i);
+                var answer = document.querySelector('input[name="q' + i + '"]:checked');
+                if (answer) {
+                    score += parseInt(answer.value);
+                    question.classList.remove('unanswered');
+
+
+question.classList.add('answered');
+                } else {
+                    unanswered++;
+                    question.classList.remove('answered');
+                    question.classList.add('unanswered');
+                }
+            }
+
+            if (unanswered > 0) {
+                document.querySelector('.error-message').textContent = 'Пожалуйста, ответьте на все вопросы!';
+                return;
+            }
+
+            document.querySelector('.error-message').textContent = '';
+
+            if (score <= 10) {
+    resultText = 'С вами всё в порядке! Продолжайте в том же духе. \n\n' +
+                 'Исследования показывают, что здоровый образ жизни и ' +
+                 'регулярные медицинские осмотры помогают минимизировать риски. ' +
+                 'Важно следить за питанием, избегать вредных привычек и поддерживать активность.';
+} else if (score <= 25) {
+    resultText = 'Неплохо, но рекомендуем минимизировать вредные привычки! \n\n' +
+                 'Курение, несбалансированное питание и стресс могут повышать вероятность ' +
+                 'развития онкологических заболеваний. Рекомендуем обратить внимание ' +
+                 'на профилактические меры, такие как регулярные обследования и здоровый образ жизни.';
+} else {
+    resultText = 'Важно задуматься о переменах в вашем образе жизни! \n\n' +
+                 'Высокие риски могут быть связаны с малоподвижным образом жизни, курением, ' +
+                 'алкоголем и плохим питанием. Научные исследования показывают, что регулярные ' +
+                 'обследования и отказ от вредных привычек значительно снижают вероятность заболеваний.';
+}
+
+            document.querySelector('.result').textContent = '' + resultText;
+        });
+
+        // Исправление: при ответе на пропущенный вопрос возвращаем исходную подсветку
+        document.querySelectorAll('input[type="radio"]').forEach((input) => {
+            input.addEventListener('change', function () {
+                var questionId = this.closest('.question').id;
+                var question = document.getElementById(questionId);
+
+                // Убираем подсветку пропущенных вопросов
+                question.classList.remove('unanswered');
+                question.classList.add('answered');
+            });
+        });
+    </script>
+</body>
+</html>
